@@ -21,7 +21,7 @@ const errorHandler = (err, req, res, next) => {
     );
   }
 
-  if (error.data.statusCode === 400) {
+  if (error?.data?.statusCode === 400) {
     error = new errors.HttpBadRequest(error.data);
   }
 
@@ -33,7 +33,7 @@ const errorHandler = (err, req, res, next) => {
     type: error.constructor.name,
     message: error.message,
     code: error.statusCode,
-    data: error.data ? error.data : {},
+    data: error.data ?? {},
     error: error.error,
     stackTrace,
   });

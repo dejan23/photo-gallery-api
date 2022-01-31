@@ -17,8 +17,8 @@ class HttpError extends Error {
 class HttpUnauthorized extends HttpError {
   constructor(message = null, data = null) {
     super({
-      data,
       message: message || 'Unauthorized',
+      data,
       statusCode: codes.UNAUTHORIZED,
     });
   }
@@ -27,8 +27,8 @@ class HttpUnauthorized extends HttpError {
 class HttpBadRequest extends HttpError {
   constructor(message = null, data = null) {
     super({
-      data,
       message: message || 'Bad request',
+      data,
       statusCode: codes.BAD_REQUEST,
     });
   }
@@ -37,18 +37,17 @@ class HttpBadRequest extends HttpError {
 class HttpValidationError extends HttpError {
   constructor(message = null, data = null) {
     super({
-      data,
       message: message || 'Validation error',
+      data,
       statusCode: codes.BAD_REQUEST,
     });
   }
 }
-
 class HttpNotFound extends HttpError {
   constructor(message = null, data = null) {
     super({
-      data,
       message: message || 'Not Found',
+      data,
       statusCode: codes.NOT_FOUND,
     });
   }
@@ -57,8 +56,8 @@ class HttpNotFound extends HttpError {
 class HttpInternalServerError extends HttpError {
   constructor(message = null, data = null) {
     super({
-      data,
       message: message || 'Internal server error',
+      data,
       statusCode: codes.INTERNAL_SERVER_ERROR,
     });
   }

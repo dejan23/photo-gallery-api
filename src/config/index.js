@@ -8,7 +8,7 @@ const base = {
 };
 
 const mongodb = {
-  uri: process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/photo-galery',
+  uri: `mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`,
 };
 
 const aws = {
