@@ -21,6 +21,10 @@ const errorHandler = (err, req, res, next) => {
     );
   }
 
+  if (error.data.statusCode === 400) {
+    error = new errors.HttpBadRequest(error.data);
+  }
+
   if (!(error instanceof errors.HttpError)) {
     error = new errors.HttpInternalServerError();
   }
