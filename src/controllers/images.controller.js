@@ -21,7 +21,7 @@ const imagesUpload = async (req, res, next) => {
 
 const imagesFetch = async (req, res, next) => {
   try {
-    return res.json({ images: await imagesFetchService(req.file) });
+    return res.json({ images: await imagesFetchService() });
   } catch (error) {
     return next(error);
   }
