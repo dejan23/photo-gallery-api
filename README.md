@@ -1,6 +1,7 @@
 # Photo Gallery API
 
 # Note
+- You will need aws credentials to run the app
 
 #### Commands with Docker
 
