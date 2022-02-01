@@ -18,6 +18,14 @@ const imagesSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    widthCM: {
+      type: Number,
+      required: true,
+    },
+    heightCM: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,

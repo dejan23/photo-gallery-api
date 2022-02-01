@@ -30,9 +30,9 @@ const imagesUploadService = async (data) => {
       mimetype,
     };
 
-    await awss3Upload(obj);
+    const { widthCM, heightCM } = await awss3Upload(obj);
 
-    const image = await ImagesModel.create(obj);
+    const image = await ImagesModel.create({ ...obj, widthCM, heightCM });
 
     return image;
   } catch (error) {

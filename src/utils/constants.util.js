@@ -5,4 +5,12 @@ const codes = {
   INTERNAL_SERVER_ERROR: 500,
 };
 
-export default codes;
+const imageSize = {
+  // MAX_WIDTH_CM: 60,
+  // MAX_WIDTH_PX: 2267,
+
+  MAX_WIDTH_CM: 35,
+  MAX_WIDTH_PX: 1322,
+};
+
+export { imageSize, codes };

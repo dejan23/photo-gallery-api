@@ -1,7 +1,7 @@
 import util from 'util';
 import Multer from 'multer';
 
-const maxSize = 2 * 1024 * 1024;
+const maxSize = 30 * 1024 * 1024;
 
 const processFile = Multer({
   storage: Multer.memoryStorage(),

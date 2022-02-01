@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable max-classes-per-file */
-import codes from './constants.util.js';
+import { codes } from './constants.util.js';
 
 class HttpError extends Error {
   constructor({ message, name, statusCode, data }) {
