@@ -31,7 +31,7 @@ const awss3Upload = async (data) => {
 
     return { widthCM, heightCM };
   } catch (error) {
-    throw new HttpBadRequest(error);
+    throw new HttpBadRequest(error.message);
   }
 };
 

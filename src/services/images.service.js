@@ -2,52 +2,41 @@
 import ImagesModel from '../models/images.model.js';
 import awss3Upload from '../utils/awss3.util.js';
 import { aws } from '../config/index.js';
-import {
-  HttpBadRequest,
-  HttpInternalServerError,
-} from '../utils/errors.util.js';
+import { HttpBadRequest } from '../utils/errors.util.js';
 
 const { AWSBucketName } = aws;
 
 const imagesUploadService = async (data) => {
-  try {
-    const { originalname, buffer, size, mimetype } = data;
+  const { originalname, buffer, size, mimetype } = data;
 
-    const fileName = originalname.replace(/ /g, '-');
+  const fileName = originalname.replace(/ /g, '-');
 
-    const imageExist = await ImagesModel.findOne({ key: fileName });
+  const imageExist = await ImagesModel.findOne({ key: fileName });
 
-    if (imageExist) {
-      throw new HttpBadRequest(`${fileName} - this image already uploaded`);
-    }
-
-    const obj = {
-      key: fileName,
-      buffer,
-      size,
-      src: `https://${AWSBucketName}.s3.amazonaws.com/${fileName}`,
-      bucket: AWSBucketName,
-      mimetype,
-    };
-
-    const { widthCM, heightCM } = await awss3Upload(obj);
-
-    const image = await ImagesModel.create({ ...obj, widthCM, heightCM });
-
-    return image;
-  } catch (error) {
-    throw new HttpInternalServerError(null, error);
+  if (imageExist) {
+    throw new HttpBadRequest(`${fileName} - this image already uploaded`);
   }
+
+  const obj = {
+    key: fileName,
+    buffer,
+    size,
+    src: `https://${AWSBucketName}.s3.amazonaws.com/${fileName}`,
+    bucket: AWSBucketName,
+    mimetype,
+  };
+
+  const { widthCM, heightCM } = await awss3Upload(obj);
+
+  const image = await ImagesModel.create({ ...obj, widthCM, heightCM });
+
+  return image;
 };
 
 const imagesFetchService = async () => {
-  try {
-    const images = await ImagesModel.find();
+  const images = await ImagesModel.find();
 
-    return images;
-  } catch (error) {
-    throw new HttpInternalServerError(error);
-  }
+  return images;
 };
 
 export { imagesUploadService, imagesFetchService };

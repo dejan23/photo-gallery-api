@@ -12,10 +12,6 @@ const errorHandler = (err, req, res, next) => {
     stackTrace = error.stack;
   }
 
-  if (error?.data?.statusCode === 400) {
-    error = new errors.HttpBadRequest(error.data);
-  }
-
   if (!(error instanceof errors.HttpError)) {
     error = new errors.HttpInternalServerError();
   }
